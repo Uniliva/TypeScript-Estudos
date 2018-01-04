@@ -6,8 +6,8 @@ class Negociacao {
         this._valor = valor;
     }
     //criando getters
-    get data() { return this._data; }
-    get quantidade() { return this._quatidade; }
-    get valor() { return this._valor; }
-    get volume() { return this._quatidade * this._valor; }
+    get data() { return this._data }
+    get quantidade() { return this._quatidade }
+    get valor() { return this._valor }
+    get volume() { return this._quatidade * this._valor }
 }

@@ -1,0 +1,2 @@
+#ignorando a pasta de bibliotecas do nodeJS
+node_modules/
