@@ -1,4 +1,7 @@
 class Negociacao {
+    private _data;
+    private _quatidade;
+    private _valor;
     //criando o construtor da classe Negociação
     constructor(data, quantidade, valor) {
         this._data = data;
