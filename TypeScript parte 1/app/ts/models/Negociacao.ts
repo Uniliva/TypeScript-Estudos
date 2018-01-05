@@ -1,9 +1,9 @@
 class Negociacao {
-    private _data;
-    private _quatidade;
-    private _valor;
+    private _data:Date;
+    private _quatidade:Number;
+    private _valor:Number;
     //criando o construtor da classe Negociação
-    constructor(data, quantidade, valor) {
+    constructor(data:Date, quantidade:Number, valor:Number) {
         this._data = data;
         this._quatidade = quantidade;
         this._valor = valor;
