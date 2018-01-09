@@ -1,13 +1,10 @@
-class Views<T>{
-    constructor(protected _elemento: Element){
+abstract class Views<T>{
+    constructor(protected _elemento: JQuery){
     }
-    _template(msg:T):string{
-        throw new Error('NECESSARIO IMPLEMENTAR O TEMPLATE');
-        
-    }
+   abstract  _template(msg:T):string
 
-    update(msg: T): void { this._elemento.innerHTML = this._template(msg) };
+    update(msg: T): void { this._elemento.html(this._template(msg)) };
 
 
   
-}
+} 

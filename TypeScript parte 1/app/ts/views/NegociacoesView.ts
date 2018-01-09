@@ -1,4 +1,4 @@
-class NegociacoesView extends Views<Negociacao>{
+class NegociacoesView extends Views<Negociacoes>{
    
     _template(model: Negociacoes): string {
         return `

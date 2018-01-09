@@ -26,6 +26,4 @@ class NegociacoesView extends Views {
     </table> `;
     }
     ;
-    update(model) { this._elemento.innerHTML = this._template(model); }
-    ;
 }
