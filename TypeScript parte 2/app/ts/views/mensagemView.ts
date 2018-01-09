@@ -1,8 +1,10 @@
-class MensagemView extends Views<string>{
+import { Views } from "./views"
 
-     _template(msg:String):string{
-        return `<p class="alert alert-info"><strong>Msg:</strong> ${msg}</p> `;
+export class MensagemView extends Views<string>{
+
+        _template(msg: String): string {
+            return `<p class="alert alert-info"><strong>Msg:</strong> ${msg}</p> `;
+        }
+
+
     }
-
-   
-}

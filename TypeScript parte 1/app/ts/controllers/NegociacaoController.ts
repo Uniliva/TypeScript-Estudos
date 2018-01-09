@@ -1,10 +1,4 @@
-import { Negociacoes } from './../models/Negociacoes';
-import { MensagemView } from './../views/mensagemView';
-import { NegociacoesView } from './../views/NegociacoesView';
-import { Negociacao } from '../models/Negociacao';
-
-
-export class NegociacaoController {
+class NegociacaoController {
     private _inputData: JQuery;
     private _inputQuantidade: JQuery;
     private _inputValor: JQuery;
@@ -30,9 +24,9 @@ export class NegociacaoController {
      
     }
     _limpaCampos(){
-        this._inputData.value="0";
-        this._inputQuantidade.value="1";
-        this._inputValor.value="0";
+        this._inputData.val("1");
+        this._inputQuantidade.val("1");
+        this._inputValor.val(0);
         this._inputData.focus();
 
     }

@@ -1,5 +1,9 @@
-class NegociacoesView extends Views<Negociacoes>{
-   
+import { Negociacoes } from './../models/Negociacoes';
+import { Views } from  "./views"
+
+
+export class NegociacoesView extends Views<Negociacoes>{
+
     _template(model: Negociacoes): string {
         return `
    <table class="table table-hover table-bordered">
@@ -29,6 +33,7 @@ class NegociacoesView extends Views<Negociacoes>{
         </tfoot>
     </table> `
     };
-   
+
 
 }
+
