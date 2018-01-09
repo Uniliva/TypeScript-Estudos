@@ -7,12 +7,14 @@ class NegociacaoController {
         this._inputValor = $("#valor");
         this._negociacaoView = new NegociacoesView($("#negociacaoview"));
         this._negociacaoView.update(this._negociacoes);
+        this._mensagemView = new MensagemView($("#msg"));
     }
     adiciona(event) {
         event.preventDefault();
         const negociacao = new Negociacao(new Date(this._inputData.value.replace("/-/g", ",")), parseInt(this._inputQuantidade.value), parseFloat(this._inputValor.value));
         this._negociacoes.adiciona(negociacao);
         this._negociacaoView.update(this._negociacoes);
+        this._mensagemView.update("Negociação adicionado com sucesso!");
         this._limpaCampos();
     }
     _limpaCampos() {
