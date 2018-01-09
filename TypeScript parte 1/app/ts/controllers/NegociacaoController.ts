@@ -20,8 +20,7 @@ class NegociacaoController {
         this._negociacoes.adiciona(negociacao);
         this._negociacaoView.update(this._negociacoes);
         this._mensagemView.update("Negociação adicionado com sucesso!")
-        this._limpaCampos();
-    
+        this._limpaCampos();   
      
     }
     _limpaCampos(){

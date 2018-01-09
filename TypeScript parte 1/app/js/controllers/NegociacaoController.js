@@ -1,7 +1,6 @@
 class NegociacaoController {
     constructor() {
         this._negociacoes = new Negociacoes();
-        let $ = document.querySelector.bind(document);
         this._inputData = $("#data");
         this._inputQuantidade = $("#quantidade");
         this._inputValor = $("#valor");
@@ -11,7 +10,7 @@ class NegociacaoController {
     }
     adiciona(event) {
         event.preventDefault();
-        const negociacao = new Negociacao(new Date(this._inputData.value.replace("/-/g", ",")), parseInt(this._inputQuantidade.value), parseFloat(this._inputValor.value));
+        const negociacao = new Negociacao(new Date(this._inputData.val().replace("/-/g", ",")), parseInt(this._inputQuantidade.val()), parseFloat(this._inputValor.val()));
         this._negociacoes.adiciona(negociacao);
         this._negociacaoView.update(this._negociacoes);
         this._mensagemView.update("Negociação adicionado com sucesso!");
