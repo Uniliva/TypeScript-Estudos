@@ -1,6 +1,4 @@
-namespace Views {
-
-   export abstract class Views<T>{
+export abstract class Views<T>{
         constructor(protected _elemento: JQuery) {
         }
         abstract _template(msg: T): string
@@ -10,4 +8,3 @@ namespace Views {
 
 
     }
-}

@@ -1,4 +1,6 @@
-class NegociacoesView extends Views {
+import { Views } from "./views"
+
+export class NegociacoesView extends Views {
     _template(model) {
         return `
    <table class="table table-hover table-bordered">
