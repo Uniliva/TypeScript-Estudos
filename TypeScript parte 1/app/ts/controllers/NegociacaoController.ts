@@ -3,15 +3,15 @@ class NegociacaoController {
     private _inputQuantidade: JQuery;
     private _inputValor: JQuery;
     private _negociacoes = new Negociacoes();
-    private _negociacaoView:NegociacoesView;
-    private _mensagemView:MensagemView;
+    private _negociacaoView:Views.NegociacoesView;
+    private _mensagemView:Views.MensagemView;
     constructor() {
         this._inputData = $("#data");
         this._inputQuantidade = $("#quantidade");
         this._inputValor =$("#valor");
-        this._negociacaoView = new NegociacoesView($("#negociacaoview"));
+        this._negociacaoView = new Views.NegociacoesView($("#negociacaoview"));
         this._negociacaoView.update(this._negociacoes);
-        this._mensagemView= new MensagemView($("#msg"));
+        this._mensagemView= new Views.MensagemView($("#msg"));
        
     }
     adiciona(event: Event):void{
