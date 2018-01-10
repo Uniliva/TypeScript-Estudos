@@ -1,4 +1,4 @@
-class Negociacao {
+export class Negociacao {
     //criando o construtor da classe Negociação
     constructor(private _data:Date, private _quantidade:number, private _valor:number) {
     }

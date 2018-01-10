@@ -6,7 +6,7 @@ System.register([], function (exports_1, context_1) {
         setters: [],
         execute: function () {
             Views = class Views {
-                constructor(_elemento, opcional) {
+                constructor(_elemento, opcional = false) {
                     this._elemento = _elemento;
                     this.opcional = opcional;
                     if (opcional)
