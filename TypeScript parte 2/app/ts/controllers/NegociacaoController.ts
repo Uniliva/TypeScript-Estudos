@@ -1,6 +1,7 @@
 
 import { Negociacoes, Negociacao } from './../models/index';
 import { MensagemView, NegociacoesView } from './../views/index';
+import { verificaTempoExecucao } from '../helpers/decorectors/indexs';
 
 export class NegociacaoController {
     private _inputData: JQuery;
@@ -18,9 +19,17 @@ export class NegociacaoController {
         this._mensagemView= new MensagemView($("#msg"));
        
     }
+
+    @verificaTempoExecucao()
     adiciona(event: Event):void{
         event.preventDefault();
-        const negociacao = new Negociacao(new Date(this._inputData.val().replace("/-/g",",")), parseInt(this._inputQuantidade.val()),parseFloat( this._inputValor.val()))
+        let data =new Date(this._inputData.val().replace("/-/g",","));
+        if (this._ehDiaUtil){
+            this._mensagemView.update("Só é permitdo cadastrar operações em dias uteis");
+            return
+
+        }
+        const negociacao = new Negociacao(data, parseInt(this._inputQuantidade.val()),parseFloat( this._inputValor.val()))
         this._negociacoes.adiciona(negociacao);
         this._negociacaoView.update(this._negociacoes);
         this._mensagemView.update("Negociação adicionado com sucesso!")
@@ -34,4 +43,14 @@ export class NegociacaoController {
         this._inputData.focus();
 
     }
+
+    //metodo que retorna um boolean
+    private _ehDiaUtil(data:Date):boolean{
+        return data.getDay() == diaDaSemana.domingo || data.getDay() == diaDaSemana.sabado;
+    }
+}
+
+//Usando enum
+enum diaDaSemana{
+    domingo,segunda,terca,quarta,quinta,sexta,sabado
 }
