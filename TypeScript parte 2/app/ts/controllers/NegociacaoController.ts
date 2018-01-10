@@ -13,7 +13,7 @@ export class NegociacaoController {
         this._inputData = $("#data");
         this._inputQuantidade = $("#quantidade");
         this._inputValor =$("#valor");
-        this._negociacaoView = new NegociacoesView($("#negociacaoview"));
+        this._negociacaoView = new NegociacoesView($("#negociacaoview"),true);
         this._negociacaoView.update(this._negociacoes);
         this._mensagemView= new MensagemView($("#msg"));
        
