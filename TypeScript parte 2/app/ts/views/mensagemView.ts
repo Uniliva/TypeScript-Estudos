@@ -1,4 +1,4 @@
-import { Views } from "./views"
+import { Views } from "./index"
 
 export class MensagemView extends Views<string>{
 

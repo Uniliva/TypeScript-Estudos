@@ -1,4 +1,4 @@
-import { Negociacoes } from './../models/Negociacoes';
+import { Negociacoes } from './../models/index';
 import { Views } from  "./views"
 
 
