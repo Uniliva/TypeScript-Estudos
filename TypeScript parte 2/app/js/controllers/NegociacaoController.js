@@ -51,6 +51,25 @@ System.register(["./../models/index", "./../views/index", "../helpers/decorector
                     console.log(data.getDay());
                     return data.getDay() == diaDaSemana.domingo || data.getDay() == diaDaSemana.sabado;
                 }
+                importaDados() {
+                    function isOk(res) {
+                        if (res.ok) {
+                            return res;
+                        }
+                        else {
+                            throw new Error("Ocorreu um erro!");
+                        }
+                    }
+                    fetch("http://localhost:8015/dados")
+                        .then(res => isOk(res))
+                        .then(res => res.json())
+                        .then((dados) => {
+                        dados.map(d => new index_1.Negociacao(new Date(), parseInt(d.vezes), parseFloat(d.montante)))
+                            .forEach(negociacao => this._negociacoes.adiciona(negociacao));
+                        this._negociacaoView.update(this._negociacoes);
+                    })
+                        .catch(erro => console.log(erro));
+                }
             };
             __decorate([
                 indexs_1.domInject('#data')
