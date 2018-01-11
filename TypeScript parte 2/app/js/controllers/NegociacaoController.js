@@ -45,9 +45,9 @@ System.register(["./../models/index", "./../views/index", "../helpers/decorector
                     this._limpaCampos();
                 }
                 _limpaCampos() {
-                    this._inputData.val("0");
-                    this._inputQuantidade.val("1");
-                    this._inputValor.val("0");
+                    this._inputData.value = "0";
+                    this._inputQuantidade.value = "1";
+                    this._inputValor.value = "0";
                     this._inputData.focus();
                 }
                 _ehDiaUtil(data) {
