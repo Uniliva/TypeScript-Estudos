@@ -8,7 +8,7 @@ export abstract class Views<T>{
         
         abstract _template(msg: T): string
         
-        @verificaTempoExecucao()
+       // @verificaTempoExecucao()
         update(msg: T): void { this._elemento.html(this._template(msg)) };
 
 

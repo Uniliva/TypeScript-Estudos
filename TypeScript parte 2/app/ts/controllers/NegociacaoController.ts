@@ -1,30 +1,33 @@
 
 import { Negociacoes, Negociacao } from './../models/index';
 import { MensagemView, NegociacoesView } from './../views/index';
-import { verificaTempoExecucao } from '../helpers/decorectors/indexs';
+import { verificaTempoExecucao, domInject } from '../helpers/decorectors/indexs';
 
 export class NegociacaoController {
+    @domInject('#data')
     private _inputData: JQuery;
+
+    @domInject('#quantidade')
     private _inputQuantidade: JQuery;
+
+    @domInject('#valor')
     private _inputValor: JQuery;
+
     private _negociacoes = new Negociacoes();
     private _negociacaoView:NegociacoesView;
     private _mensagemView:MensagemView;
     constructor() {
-        this._inputData = $("#data");
-        this._inputQuantidade = $("#quantidade");
-        this._inputValor =$("#valor");
         this._negociacaoView = new NegociacoesView($("#negociacaoview"),true);
         this._negociacaoView.update(this._negociacoes);
         this._mensagemView= new MensagemView($("#msg"));
        
     }
 
-    @verificaTempoExecucao()
+    //@verificaTempoExecucao()
     adiciona(event: Event):void{
         event.preventDefault();
         let data =new Date(this._inputData.val().replace("/-/g",","));
-        if (this._ehDiaUtil){
+        if (this._ehDiaUtil(data)){
             this._mensagemView.update("Só é permitdo cadastrar operações em dias uteis");
             return
 
@@ -46,6 +49,7 @@ export class NegociacaoController {
 
     //metodo que retorna um boolean
     private _ehDiaUtil(data:Date):boolean{
+        console.log(data.getDay());
         return data.getDay() == diaDaSemana.domingo || data.getDay() == diaDaSemana.sabado;
     }
 }
