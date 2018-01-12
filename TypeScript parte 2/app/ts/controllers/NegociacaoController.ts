@@ -1,7 +1,6 @@
-
-import { Negociacoes, Negociacao } from './../models/index';
+import { Negociacoes, Negociacao, NegociacaoParcial } from './../models/index';
 import { MensagemView, NegociacoesView } from './../views/index';
-import { verificaTempoExecucao, domInject } from '../helpers/decorectors/indexs';
+import { verificaTempoExecucao, domInject, TimerDecorator } from '../helpers/decorectors/indexs';
 
 export class NegociacaoController {
     @domInject('#data')
@@ -52,7 +51,8 @@ export class NegociacaoController {
         console.log(data.getDay());
         return data.getDay() == diaDaSemana.domingo || data.getDay() == diaDaSemana.sabado;
     }
-
+    
+    @TimerDecorator(500)
     importaDados(){
         function isOk(res:Response){
             if(res.ok){
@@ -64,8 +64,8 @@ export class NegociacaoController {
         fetch("http://localhost:8015/dados")
         .then(res => isOk(res))
         .then(res => res.json())
-        .then((dados:Array<any>) => {
-            dados.map( d => new Negociacao(new Date(), parseInt(d.vezes),parseFloat( d.montante)))
+        .then((dados:NegociacaoParcial[]) => {
+            dados.map( d => new Negociacao(new Date(), d.vezes, d.montante))
             .forEach(negociacao => this._negociacoes.adiciona(negociacao))
             this._negociacaoView.update(this._negociacoes);
         })

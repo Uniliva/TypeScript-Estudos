@@ -64,7 +64,7 @@ System.register(["./../models/index", "./../views/index", "../helpers/decorector
                         .then(res => isOk(res))
                         .then(res => res.json())
                         .then((dados) => {
-                        dados.map(d => new index_1.Negociacao(new Date(), parseInt(d.vezes), parseFloat(d.montante)))
+                        dados.map(d => new index_1.Negociacao(new Date(), d.vezes, d.montante))
                             .forEach(negociacao => this._negociacoes.adiciona(negociacao));
                         this._negociacaoView.update(this._negociacoes);
                     })
@@ -80,6 +80,9 @@ System.register(["./../models/index", "./../views/index", "../helpers/decorector
             __decorate([
                 indexs_1.domInject('#valor')
             ], NegociacaoController.prototype, "_inputValor", void 0);
+            __decorate([
+                indexs_1.TimerDecorator(500)
+            ], NegociacaoController.prototype, "importaDados", null);
             exports_1("NegociacaoController", NegociacaoController);
             (function (diaDaSemana) {
                 diaDaSemana[diaDaSemana["domingo"] = 0] = "domingo";
