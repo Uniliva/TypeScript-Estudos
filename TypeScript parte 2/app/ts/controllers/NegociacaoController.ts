@@ -1,6 +1,9 @@
 import { Negociacoes, Negociacao, NegociacaoParcial } from './../models/index';
 import { MensagemView, NegociacoesView } from './../views/index';
 import { verificaTempoExecucao, domInject, TimerDecorator } from '../helpers/decorectors/indexs';
+import  {NegociacaoService} from "../services/index";
+import {  imprime } from '../helpers/index';
+
 
 export class NegociacaoController {
     @domInject('#data')
@@ -15,6 +18,7 @@ export class NegociacaoController {
     private _negociacoes = new Negociacoes();
     private _negociacaoView:NegociacoesView;
     private _mensagemView:MensagemView;
+    private  _service = new NegociacaoService();
     constructor() {
         this._negociacaoView = new NegociacoesView($("#negociacaoview"),true);
         this._negociacaoView.update(this._negociacoes);
@@ -33,6 +37,9 @@ export class NegociacaoController {
         }
         const negociacao = new Negociacao(data, parseInt(this._inputQuantidade.val()),parseFloat( this._inputValor.val()))
         this._negociacoes.adiciona(negociacao);
+
+        imprime(negociacao,this._negociacoes);
+        
         this._negociacaoView.update(this._negociacoes);
         this._mensagemView.update("Negociação adicionado com sucesso!")
         this._limpaCampos();   
@@ -48,11 +55,10 @@ export class NegociacaoController {
 
     //metodo que retorna um boolean
     private _ehDiaUtil(data:Date):boolean{
-        console.log(data.getDay());
         return data.getDay() == diaDaSemana.domingo || data.getDay() == diaDaSemana.sabado;
     }
     
-    @TimerDecorator(500)
+    //@TimerDecorator(500)
     importaDados(){
         function isOk(res:Response){
             if(res.ok){
@@ -61,15 +67,11 @@ export class NegociacaoController {
                 throw new Error("Ocorreu um erro!");
             }
         }
-        fetch("http://localhost:8015/dados")
-        .then(res => isOk(res))
-        .then(res => res.json())
-        .then((dados:NegociacaoParcial[]) => {
-            dados.map( d => new Negociacao(new Date(), d.vezes, d.montante))
-            .forEach(negociacao => this._negociacoes.adiciona(negociacao))
+      
+        this._service.getNegociacoes(isOk).then(negociacoes =>{
+            negociacoes.forEach( negociacao => this._negociacoes.adiciona(negociacao));
             this._negociacaoView.update(this._negociacoes);
-        })
-        .catch(erro => console.log(erro));
+        }).catch(erro => console.log(`Ferrou : ${erro}`));
     }
 }
 

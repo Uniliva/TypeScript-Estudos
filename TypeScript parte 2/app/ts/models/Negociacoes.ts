@@ -1,16 +1,24 @@
 
+import { Negociacao } from './Negociacao';
+import { Imprimivel } from './Imprimivel';
 
-import { Negociacao } from './index';
 
-export class Negociacoes{
+export class Negociacoes extends Imprimivel {
     //usar array<Negociacao> é sememlhante a negociacao[]
-    private _negociacoes:Negociacao[]=[];
+    
+    constructor(private _negociacoes: Negociacao[] = []){
+        super();
+    }
 
-    adiciona(negociacao:Negociacao){
+    adiciona(negociacao: Negociacao) {
         this._negociacoes.push(negociacao);
     }
 
-    paraArray():Negociacao[]{
+    paraArray(): Negociacao[] {
         return ([] as Negociacao[]).concat(this._negociacoes);
+    }
+    paraTexto(): void {
+        console.log(this._negociacoes);
+
     }
 }
